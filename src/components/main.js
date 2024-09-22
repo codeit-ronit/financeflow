@@ -7,6 +7,7 @@ import Services from './Services';
 import { aboutObj, discoverObj, signupObj } from './Infosection/Data.js';
 import InfoSection from './Infosection/Infosection.js';
 import Sidebar from './Sidebar.js';
+import Discover from './Discover.js';
 
 function Main() {
  
@@ -21,9 +22,8 @@ function Main() {
         <Sidebar isOpen={isOpen} toggle={toggle} />
         <Navbar toggle={toggle} />
         <CoverSection />
-        <InfoSection {...aboutObj} />
-      <InfoSection {...discoverObj} />
-      <InfoSection {...signupObj} />
+        <InfoSection />
+        <Discover/>
         <Services/>
         <Footer />
 

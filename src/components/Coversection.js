@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import Video from './videos/video.mp4'; // adjust path based on component location ;
+import React from 'react';
+import Video from './videos/video.mp4'; // adjust path based on component location
+import { useNavigate } from 'react-router-dom';
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
 const CoverSection = () => {
-  const [hover, setHover] = useState(false);
+  const navigate = useNavigate();
 
-  const onHover = () => {
-    setHover(!hover);
+  const handleGetStarted = () => {
+    navigate('/dash');
   };
 
   return (
-    <div className="relative flex  font-encode-sans-expanded justify-center items-center h-[800px] bg-[#0c0c0c] px-[30px] z-1">
+    <div className="relative flex font-encode-sans-expanded justify-center items-center h-[800px] bg-[#0c0c0c] px-[30px] z-1">
       <div className="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden">
         <video
           className="w-full h-full object-cover bg-[#232a34]"
@@ -17,7 +19,7 @@ const CoverSection = () => {
           loop
           muted
           src={Video}
-          type='video/mp4'
+          type="video/mp4"
         />
       </div>
 
@@ -26,21 +28,29 @@ const CoverSection = () => {
 
       {/* Content */}
       <div className="relative z-3 max-w-[1200px] p-4 flex flex-col items-center">
-        <h1 className="text-white text-6xl font-bold  text-center">Finance Flow</h1>
+        <h1 className="text-white text-6xl font-bold text-center">Finance Flow</h1>
         <p className="mt-6 text-white text-xl text-center max-w-[600px]">
           Manage your personal Finance
         </p>
         <div className="mt-8 flex flex-col items-center">
+        <SignedOut>
+          <SignInButton mode='modal'>
           <button
             className="bg-green-400 text-gray-900 py-2 px-6 rounded-full text-lg font-semibold hover:bg-white transition-all duration-300 flex items-center"
-            onMouseEnter={onHover}
-            onMouseLeave={onHover}
+            onClick={handleGetStarted}
           >
             Get started
-            <span className="ml-2 text-2xl">
-              {hover ? '→' : '→'}
-            </span>
           </button>
+          </SignInButton >
+      </SignedOut>
+      <SignedIn>
+      <button
+            className="bg-green-400 text-gray-900 py-2 px-6 rounded-full text-lg font-semibold hover:bg-white transition-all duration-300 flex items-center"
+            onClick={handleGetStarted}
+          >
+            Get started
+          </button>
+      </SignedIn>
         </div>
       </div>
     </div>

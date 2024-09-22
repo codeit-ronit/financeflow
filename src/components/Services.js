@@ -6,7 +6,7 @@ import Icon3 from '../images/svg-6.svg';
 const Services = () => {
   return (
     <div id="services" className="flex flex-col justify-center items-center  font-encode-sans-expanded bg-[#010606] h-[800px]">
-      <h1 className="text-white text-4xl mb-16">Our Services</h1>
+      <h1 className="text-white text-4xl mb-16 font-bold">Our Product</h1>
       <div className="max-w-[1000px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-8">
         
         <div className="bg-white flex flex-col justify-start items-center rounded-lg max-h-[340px] p-8 shadow-lg transition-transform duration-200 hover:scale-105">

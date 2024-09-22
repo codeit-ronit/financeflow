@@ -8,7 +8,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900  font-encode-sans-expanded text-white py-12">
+    <footer id='footer' className="bg-gray-900  font-encode-sans-expanded text-white py-12">
       <div className="max-w-6xl mx-auto px-4 flex flex-col items-center">
         <div className="w-full flex flex-wrap justify-center mb-8">
           {/* Footer Links */}

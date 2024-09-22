@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FaBars } from 'react-icons/fa';
+
 import { animateScroll as scroll, Link as ScrollLink } from 'react-scroll'; // Renamed 'Link' to 'ScrollLink'
-import { Link as RouterLink } from 'react-router-dom'; // Renamed 'Link' to 'RouterLink'
+import { Link as RouterLink } from 'react-router-dom'; 
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+
 
 const Navbar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);
@@ -44,7 +46,7 @@ const Navbar = ({ toggle }) => {
         <ul className="flex space-x-4">
           <li>
             <ScrollLink
-              to='about'
+              to='aboutpage'
               smooth={true}
               duration={500}
               spy={true}
@@ -83,7 +85,7 @@ const Navbar = ({ toggle }) => {
           </li>
           <li>
             <ScrollLink
-              to='signup'
+              to='footer'
               smooth={true}
               duration={500}
               spy={true}
@@ -91,19 +93,27 @@ const Navbar = ({ toggle }) => {
               offset={-80}
               className="text-white cursor-pointer hover:border-b-2 border-green-400"
             >
-              Sign Up
+              Contact
             </ScrollLink>
           </li>
         </ul>
 
         {/* Sign In Button */}
         <div className="flex items-center">
-          <RouterLink
-            to="/signin"
+        <SignedOut>
+          <SignInButton mode='modal'>
+
+          <button
+            // to="/signin"
             className="bg-green-400 text-gray-900 py-2 px-4 rounded-full text-lg font-semibold hover:bg-white transition-all duration-300"
           >
             Sign In
-          </RouterLink>
+          </button>
+        </SignInButton >
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
         </div>
       </div>
     </nav>
