@@ -11,12 +11,12 @@ import Main2 from './main2';
 function Dash() {
   return (
     <div  className='flex h-screen'>
-      <div className='basis-[15%] h-[100vh]'>
+      <div className='w-[15%] h-[100vh] bg-black z-50'>
         <Sidebar2/>
       </div>
-      <div className='basis-[88%] border h-[100vh] overflow-scroll'>
+      <div className='w-[85%] border h-[100vh] overflow-scroll'>
         <Dashboardview/>
-          <Main2/>
+        <Main2/>
       </div>
       <div>
         <Outlet>

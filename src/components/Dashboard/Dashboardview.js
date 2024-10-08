@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { FaEnvelope, FaRegBell, FaSearch } from 'react-icons/fa';
+import { useUser } from '@clerk/clerk-react'; // Import Clerk's useUser hook
 
 const Dashboardview = () => {
   const [open, setOpen] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showMessages, setShowMessages] = useState(false);
+  
+  // Use Clerk's useUser to get user information
+  const { user} = useUser(); 
+  
 
-  // Toggle profile dropdown visibility
-  const showDropDown = () => {
-    setOpen(!open);
-  };
+  // Debugging: Check the user object
+  console.log(user); // Check if the user object is loading correctly
 
   // Toggle notifications dropdown
   const toggleNotifications = () => {
@@ -46,9 +49,9 @@ const Dashboardview = () => {
 
   return (
     <div>
-      <div className='flex items-center justify-between h-[70px] shadow-lg px-[25px]'>
+      <div className='flex items-center justify-end h-[70px] shadow-lg px-[25px]'>
         {/* Search Bar */}
-        <div className='flex items-center rounded-[5px]'>
+        {/* <div className='flex items-center rounded-[5px]'>
           <input
             type='text'
             className='bg-[#cbced8] h-[40px] outline-none pl-[13px] w-[350px] rounded-[5px] placeholder:text-[14px] leading-[20px] font-normal'
@@ -57,7 +60,7 @@ const Dashboardview = () => {
           <div className='h-[40px] px-[14px] bg-black rounded-tr-[5px] rounded-br-[5px] flex items-center cursor-pointer'>
             <FaSearch color='white' />
           </div>
-        </div>
+        </div> */}
 
         {/* Icons and Profile */}
         <div className='flex items-center gap-[15px]'>
@@ -84,24 +87,19 @@ const Dashboardview = () => {
           </div>
 
           {/* Profile Section */}
-          <div className='dropdown-container flex items-center gap-[15px] relative cursor-pointer' onClick={showDropDown}>
-            <p>Ronit Choudhary</p>
-            <div className='h-[50px] w-[50px] rounded-full bg-[#4E73DF] flex items-center justify-center'>
+          <div className='dropdown-container flex items-center gap-[15px] relative cursor-pointer'> 
+            <p>
+              {/* Display the username */}
+              {user?.username || "User"}
+            </p>
+            <div className='h-[50px] w-[54px] rounded-full  flex items-center justify-center'>
+              {/* Display the user's profile image, with a fallback */}
               <img
-                src='https://www.shutterstock.com/image-vector/user-account-circle-profile-line-260nw-272552858.jpg'
+                src={user?.imageUrl || 'https://www.shutterstock.com/image-vector/user-account-circle-profile-line-260nw-272552858.jpg'}
                 alt='Profile'
-                className='h-[54px] rounded-full'
+                className='h-[45px] w-[45px] rounded-full'
               />
             </div>
-
-            {/* Profile Dropdown */}
-            {open && (
-              <div className='bg-white border shadow-lg h-[120px] w-[150px] absolute top-[60px] z-50 right-0 pt-[15px] pl-[15px] rounded-md'>
-                <p className='cursor-pointer hover:text-blue-500 font-semibold mb-2'>Profile</p>
-                <p className='cursor-pointer hover:text-blue-500 font-semibold mb-2'>Settings</p>
-                <p className='cursor-pointer hover:text-blue-500 font-semibold'>Log out</p>
-              </div>
-            )}
           </div>
         </div>
       </div>

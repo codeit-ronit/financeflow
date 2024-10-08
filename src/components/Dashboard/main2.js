@@ -1,5 +1,6 @@
 
 import { FaEllipsisV, FaRegCalendarMinus } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 
 import React, { PureComponent } from 'react';
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
@@ -54,6 +55,25 @@ const data = [
 
 
 const Main2=()=> {
+  const [chartWidth, setChartWidth] = useState(700);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setChartWidth(300); // set width to 300 for mobile screens
+      } else {
+        setChartWidth(700); // set width to 700 for larger screens
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    // Event listener for window resizing
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   return (
     <div id='dash' className='pt-[25px] px-[25px] bg-[#F8F9FC]'>
         <div className='flex item-center justify-between'>
@@ -61,7 +81,7 @@ const Main2=()=> {
             {/* <button className='rounded-[3px] bg-black text-white flex items-center justify-center px-[30px] cursor-pointer'> Generate Report</button> */}
         </div>
 
-    <div className='grid grid-cols-4 gap-[30px] mt-[25px] pb-[15px]'>
+    <div className='grid lg:grid-cols-4 md:grid-cols-1 gap-[30px] mt-[25px] pb-[15px]'>
         <div className='h-[100px] rounded-[8px] bg-white border-l-[4px] border-green-400 flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-300 ease-out  '>
                 <div>
                     <h2  className='text-[#B589DF] text-[11px] leading-[17px] font-bold'>EARNINGS (MONTHLY)</h2>
@@ -94,17 +114,17 @@ const Main2=()=> {
                 <FaRegCalendarMinus fontSize={28} />
         </div>
     </div>
-    <div className='flex mt-[22px] w-full gap-[30px]'>
+    <div className='flex flex-col lg:flex-row mt-[22px] w-full gap-[30px]'>
         <div className='basis-[70%] border bg-white shadow-md cursor-pointer rounded-[4px]'>
             <div className='bg-[#F8F9FC] flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
                 <h2>
                 From 10/01/2023 To 09/30/2024 - Income vs. Expenses 
                  </h2>
-                <FaEllipsisV color='gray' className='cursor-pointer'/>
+                {/* <FaEllipsisV color='gray' className='cursor-pointer'/> */}
               
             </div>
         <BarChart
-          width={700}
+          width={chartWidth}
           height={500}
           data={data}
           margin={{
@@ -128,7 +148,7 @@ const Main2=()=> {
         <div className='basis-[30%] border bg-white shadow-md cursor-pointer rounded-[4px]  '>
             <div  className='bg-[#F8F9FC] flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED]' >
                 <h2> Expenses 10/01/2023 To 09/30/2024 </h2>
-                <FaEllipsisV color='gray' className='cursor-pointer'/>
+                {/* <FaEllipsisV color='gray' className='cursor-pointer'/> */}
             </div>
             <div className='pl-[35px]'>
               <Piecomponent/>  
