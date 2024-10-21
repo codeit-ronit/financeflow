@@ -8,6 +8,7 @@ import Discover from './components/Discover';
 import Comingsoon from './components/comingsoon';
 import Expenses from './components/Dashboard/Expenses';
 import Reminder from './components/Dashboard/Reminder';
+import FinancialTips from './components/Financialtips';
 
 
 const router = createBrowserRouter([
@@ -25,7 +26,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/discover", 
-    element: <Discover />,
+    element: <Discover />
+    ,
   },
   {
     path:"/comingsoon",
@@ -38,7 +40,12 @@ const router = createBrowserRouter([
   {
     path: "/reminders"  ,
     element: <Reminder/>
+  },
+  {
+  path:"/financial-tips",
+  element:<FinancialTips />
   }
+
 ]);
 function App() {
   return (

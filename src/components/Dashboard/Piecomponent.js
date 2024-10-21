@@ -68,4 +68,4 @@ function Piecomponent() {
   )
 }
 
-export default Piecomponent
+export default Piecomponent ;
