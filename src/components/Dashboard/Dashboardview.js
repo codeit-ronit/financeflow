@@ -17,15 +17,15 @@ const Dashboardview = () => {
   // Toggle notifications dropdown
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
-    setShowMessages(false); // Close messages if open
-    setOpen(false); // Close profile dropdown if open
+    setShowMessages(false);
+    setOpen(false); 
   };
 
   // Toggle messages dropdown
   const toggleMessages = () => {
     setShowMessages(!showMessages);
-    setShowNotifications(false); // Close notifications if open
-    setOpen(false); // Close profile dropdown if open
+    setShowNotifications(false); 
+    setOpen(false); 
   };
 
   // Close all dropdowns when clicking outside
